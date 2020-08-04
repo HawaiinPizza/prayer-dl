@@ -28,6 +28,7 @@ def getDay(year, month, day):
         try:
             return PRAYER_MAP[datetime.datetime(year, month, day)]
         except KeyError:
+            print("Going to download prayers")
             DL.save()
             return PRAYER_MAP[datetime.datetime(year, month, day)]
     else:
@@ -40,6 +41,7 @@ def nextPrayer():
     for prayer in prayers:
         if( today[prayer] > now):
             return (prayer, today[prayer].strftime("%H:%M"))
+    return ""
 
     
 

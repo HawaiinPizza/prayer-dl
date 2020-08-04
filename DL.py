@@ -20,7 +20,7 @@ def IntervalRequest( TimeSpan=TimeInterval):
                 url=url+"this_month.json"
         
         try:
-            response=requests.get(url+"?"+City)
+            response=requests.get(url+City)
 
             # This way, if 
             if response.status_code == 500:
@@ -58,15 +58,19 @@ def Parse():
 # But I decied to seperate them, to keep the API divdied
 def save( File=File): 
         prayer_map = Parse() 
-        with open(File, "wb") as f:
+        with open(File, "wb+") as f:
                 pickle.dump(prayer_map, f)
+                return prayer_map
                 
         
 # Given a filename and an empty variable, store file's content to variable
 def load(File=File):
-    with  open(File, "rb") as f:
-        prayer_map=pickle.load(f)
-        return prayer_map
+    try:
+        with  open(File, "rb") as f:
+            prayer_map=pickle.load(f)
+            return prayer_map
+    except FileNotFoundError:
+        return save()
 
 
 
