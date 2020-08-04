@@ -17,7 +17,7 @@ class Interval(Enum):
 TimeInterval=Interval.WEEKLY
 
 _city_prefix="?city="
-City=_city_prefix+"Dearborn"
+City=_city_prefix+""
 
 # 
 # prayer_map = {None : None}
